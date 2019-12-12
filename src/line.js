@@ -3,8 +3,11 @@ class Line {
     this.x = x;
     this.y = y;
   }
-  get toString() {
+  toString() {
     return "{ 'x' : " + this.x + "," + "'y' : " + this.y + "}";
+  }
+  isEqual(other) {
+    return other.x == this.x && other.y == this.y;
   }
 }
 
