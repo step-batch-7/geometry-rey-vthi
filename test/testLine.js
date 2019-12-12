@@ -17,10 +17,12 @@ describe("line representation ,to string", function() {
 describe("line representation, is equal function ", function() {
   it("should equate its own property with given other property", function() {
     const line = new Line(2, 4);
-    assert.ok(line.isEqual({ x: 2, y: 4 }));
+    const other = new Line(2, 4);
+    assert.ok(line.isEqual(other));
   });
   it("should equate its own property with given other similar property", function() {
     const line = new Line(6, 2);
-    assert.ok(line.isEqual({ x: 6, y: 2 }));
+    const other = new Line(6, 2, 3);
+    assert.ok(line.isEqual(other));
   });
 });
