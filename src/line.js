@@ -11,8 +11,10 @@ class Line {
     return `Line (${this.endA.x},${this.endA.y}) (${this.endB.x},${this.endB.y})`;
   }
   isEqualTo(other) {
+    const isSameType = other instanceof Line;
     let isEqual = isTwoPointsEqual(this.endA, other.endA);
-    return isEqual && isTwoPointsEqual(this.endB, other.endB);
+    isEqual = isEqual && isTwoPointsEqual(this.endB, other.endB);
+    return isEqual && isSameType;
   }
 }
 

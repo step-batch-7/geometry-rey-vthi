@@ -21,8 +21,14 @@ describe("line representation, is equal function ", function() {
     assert.ok(line.isEqualTo(other));
   });
   it("should equate its own property with given other similar property", function() {
-    const line = new Line(6, 2);
-    const other = new Line(6, 2, 3);
+    const line = new Line({ x: 4, y: 2 }, { x: 4, y: 3 });
+    const other = new Line({ x: 4, y: 2 }, { x: 4, y: 3 });
     assert.ok(line.isEqualTo(other));
+  });
+
+  it("should checke the instance of the Object, where both should be same", function() {
+    const line = new Line({ x: 2, y: 2 }, { x: 4, y: 3 });
+    const other = { endA: { x: 2, y: 2 }, endB: { x: 4, y: 3 } };
+    assert.ok(!line.isEqualTo(other));
   });
 });
