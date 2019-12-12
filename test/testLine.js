@@ -4,7 +4,12 @@ const Line = require("../src/line.js");
 describe("line representation ,to string", function() {
   it("should give the representation of the given line", function() {
     const line = new Line(2, 3);
-    const expected = "{ 'x' : 2,'y' : 3}";
+    const expected = `Line (2,3)`;
+    assert.strictEqual(line.toString(), expected);
+  });
+  it("should give the representation of the given line", function() {
+    const line = new Line(5, 3, 5);
+    const expected = `Line (5,3)`;
     assert.strictEqual(line.toString(), expected);
   });
 });

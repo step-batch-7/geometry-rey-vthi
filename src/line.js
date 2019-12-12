@@ -4,7 +4,7 @@ class Line {
     this.y = y;
   }
   toString() {
-    return "{ 'x' : " + this.x + "," + "'y' : " + this.y + "}";
+    return `Line (${this.x},${this.y})`;
   }
   isEqual(other) {
     return other.x == this.x && other.y == this.y;
