@@ -1,7 +1,7 @@
 const assert = require("assert");
 const Line = require("../src/line.js");
 
-describe("line representation", function() {
+describe("Line", function() {
   describe("toString", function() {
     it("should give the representation of the given line [positive points]", function() {
       const line = new Line({ x: 2, y: 2 }, { x: 4, y: 3 });
@@ -20,11 +20,9 @@ describe("line representation", function() {
       assert.strictEqual(line.toString(), expected);
     });
   });
-});
 
-describe("line representation", function() {
   describe("isEqualTo", function() {
-    it("should equate its own instance with given other similar instance", function() {
+    it("should equate its own instance with given other similar instance[positive points]", function() {
       const line = new Line({ x: 2, y: 2 }, { x: 4, y: 3 });
       const other = new Line({ x: 2, y: 2 }, { x: 4, y: 3 });
       assert.ok(line.isEqualTo(other));
