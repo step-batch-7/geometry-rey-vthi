@@ -75,5 +75,10 @@ describe("Line", function() {
       const line = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
       assert.strictEqual(line.slope, 1);
     });
+    it("should give the slope of the line instance, where the slope has floating point value", function() {
+      const line = new Line({ x: 5, y: 4 }, { x: 2, y: 3 });
+      const actual = line.slope;
+      assert.approximately(actual, 0.33, 0.5);
+    });
   });
 });
