@@ -4,8 +4,8 @@ const isTwoPointsEqual = function(point1, point2) {
 
 class Line {
   constructor(endA, endB) {
-    this.endA = { x: endA.x, y: endA.y };
-    this.endB = { x: endB.x, y: endB.y };
+    this.endA = endA;
+    this.endB = endB;
   }
   toString() {
     return `Line (${this.endA.x},${this.endA.y}) (${this.endB.x},${this.endB.y})`;
@@ -18,4 +18,4 @@ class Line {
   }
 }
 
-module.exports = Line;
+module.exports = { Line: Line, isTwoPointsEqual: isTwoPointsEqual };
