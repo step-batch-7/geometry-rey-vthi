@@ -2,7 +2,7 @@ const assert = require("assert");
 const { Line, isTwoPointsEqual } = require("../src/line.js");
 
 describe("line representation ,to string", function() {
-  it("should give the representation of the given positve number line", function() {
+  it("should give the representation of the given positive number line", function() {
     const line = new Line({ x: 2, y: 2 }, { x: 4, y: 3 });
     const expected = `Line (2,2) (4,3)`;
     assert.strictEqual(line.toString(), expected);
