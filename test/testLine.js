@@ -31,6 +31,12 @@ describe("line representation, is equal function ", function() {
     const other = { endA: { x: 2, y: 2 }, endB: { x: 4, y: 3 } };
     assert.ok(!line.isEqualTo(other));
   });
+
+  it("should check the instance of the Object, where other is just an empty object", function() {
+    const line = new Line({ x: 2, y: 2 }, { x: 4, y: 3 });
+    const other = {};
+    assert.ok(!line.isEqualTo(other));
+  });
 });
 
 describe("isTwoPointsEqual function", function() {
