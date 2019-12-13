@@ -19,7 +19,10 @@ class Line {
   }
 
   get length() {
-    return Math.sqrt(this.endB.x - this.endA.x + (this.endB.x - this.endA.x));
+    const value1 = Math.abs(this.endA.x - this.endB.x);
+    const value2 = Math.abs(this.endA.y - this.endB.y);
+    const length = Math.sqrt(value1 * value1 + value2 * value2);
+    return length;
   }
 }
 

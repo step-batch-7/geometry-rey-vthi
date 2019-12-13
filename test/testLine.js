@@ -1,4 +1,4 @@
-const assert = require("assert");
+const assert = require("chai").assert;
 const Line = require("../src/line.js");
 
 describe("Line", function() {
@@ -48,7 +48,13 @@ describe("Line", function() {
   describe("length", function() {
     it("should give the line length of the instance", function() {
       const line = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
-      assert.strictEqual(line.length, 2);
+      const actual = line.length;
+      assert.approximately(actual, 2.82, 0.5);
+    });
+    it("should give length of line with decimal point coordinates", function() {
+      const line = new Line({ x: 5, y: 4 }, { x: 2, y: 3 });
+      const actual = line.length;
+      assert.approximately(actual, 3.16, 0.05);
     });
   });
 });
