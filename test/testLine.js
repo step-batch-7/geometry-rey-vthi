@@ -45,4 +45,10 @@ describe("Line", function() {
       assert.ok(!line.isEqualTo(other));
     });
   });
+  describe("length", function() {
+    it("should give the line length of the instance", function() {
+      const line = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
+      assert.strictEqual(line.length, 2);
+    });
+  });
 });
