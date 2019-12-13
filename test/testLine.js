@@ -63,6 +63,11 @@ describe("Line", function() {
         const other = new Line({ x: 2, y: 2 }, { x: 6, y: 6 });
         assert.ok(line.isParallelTo(other));
       });
+      it("should return false when they are not parallel to each ", function() {
+        const line = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
+        const other = new Line({ x: 2, y: 2 }, { x: 4, y: 5 });
+        assert.ok(!line.isParallelTo(other));
+      });
     });
   });
 });
