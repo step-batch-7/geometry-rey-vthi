@@ -46,12 +46,19 @@ describe("Line", function() {
     });
   });
   describe("length", function() {
-    it("should give the line length of the instance", function() {
+    it("should give the line length of the instance when the coordinates are positive", function() {
       const line = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
       const actual = line.length;
       assert.approximately(actual, 2.82, 0.5);
     });
-    it("should give length of line with decimal point coordinates", function() {
+
+    it("should give the length of the instance when the coordinates are positive number", function() {
+      const line = new Line({ x: 5, y: -4 }, { x: -2, y: 3 });
+      const actual = line.length;
+      assert.approximately(actual, 9.89, 0.5);
+    });
+
+    it("should give the line length of the instance where the length is floating point number", function() {
       const line = new Line({ x: 5, y: 4 }, { x: 2, y: 3 });
       const actual = line.length;
       assert.approximately(actual, 3.16, 0.05);
@@ -63,6 +70,13 @@ describe("Line", function() {
       const other = new Line({ x: 2, y: 2 }, { x: 6, y: 6 });
       assert.ok(line.isParallelTo(other));
     });
+
+    it("should return true when both the instance are equal", function() {
+      const line = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
+      const other = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
+      assert.ok(line.isParallelTo(other));
+    });
+
     it("should return false when they are not parallel to each ", function() {
       const line = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
       const other = new Line({ x: 2, y: 2 }, { x: 4, y: 5 });

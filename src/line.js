@@ -2,12 +2,6 @@ const arePointsEqual = function(point1, point2) {
   return point1.x === point2.x && point1.y === point2.y;
 };
 
-const slope = function(endA, endB) {
-  const numerator = endB.y - endA.y;
-  const denominator = endB.x - endA.x;
-  return numerator / denominator;
-};
-
 class Line {
   constructor(endA, endB) {
     this.endA = { x: endA.x, y: endA.y };
@@ -25,10 +19,10 @@ class Line {
   }
 
   get length() {
-    const value1 = Math.abs(this.endA.x - this.endB.x);
-    const value2 = Math.abs(this.endA.y - this.endB.y);
-    const length = Math.sqrt(value1 * value1 + value2 * value2);
-    return length;
+    const x = Math.abs(this.endA.x - this.endB.x);
+    const y = Math.abs(this.endA.y - this.endB.y);
+    return Math.sqrt(x * x + y * y);
+    r;
   }
 
   get slope() {
@@ -38,9 +32,8 @@ class Line {
   }
 
   isParallelTo(other) {
-    const lineSlope = this.slope;
-    const otherSlope = slope(other.endA, other.endB);
-    return lineSlope === otherSlope;
+    if (this === other) return false;
+    return other instanceof Line && this.slope === other.slope;
   }
 }
 
