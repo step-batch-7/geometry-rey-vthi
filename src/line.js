@@ -5,6 +5,10 @@ const getYIntercept = function(x, y, m) {
   return y - m * x;
 };
 
+const isPointIsInLine = function(endPoints, coordinate) {
+  const [endA, endB] = endPoints.sort();
+  return coordinate >= endA && coordinate <= endB;
+};
 class Line {
   constructor(endA, endB) {
     this.endA = { x: endA.x, y: endA.y };
@@ -40,11 +44,15 @@ class Line {
   }
 
   findX(y) {
+    if (!isPointIsInLine([this.endA.y, this.endB.y], y)) return NaN;
+    if (this.slope === 0) return this.endA.y;
     const yIntercept = getYIntercept(this.endA.x, this.endA.y, this.slope);
     return (y - yIntercept) / this.slope;
   }
 
   findY(x) {
+    if (!isPointIsInLine([this.endA.x, this.endB.x], x)) return NaN;
+    if (this.slope === 0) return this.endA.y;
     const yIntercept = getYIntercept(this.endA.x, this.endA.y, this.slope);
     return this.slope * x + yIntercept;
   }

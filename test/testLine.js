@@ -99,9 +99,9 @@ describe("Line", function() {
 
   describe("findX", function() {
     it("should find the x value", function() {
-      const line = new Line({ x: 0, y: 6 }, { x: 3, y: 8 });
-      const actual = line.findX(6);
-      assert.strictEqual(actual, 0);
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
+      const actual = line.findX(2);
+      assert.strictEqual(actual, 2);
     });
   });
   describe("findY", function() {
