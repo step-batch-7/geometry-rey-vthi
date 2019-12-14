@@ -23,29 +23,36 @@ describe("Line", function() {
   });
 
   describe("isEqualTo", function() {
-    it("should equate its own instance with given other similar instance[positive points]", function() {
+    it("should validate when other line are equal", function() {
       const line = new Line({ x: 2, y: 2 }, { x: 4, y: 3 });
       const other = new Line({ x: 2, y: 2 }, { x: 4, y: 3 });
-      assert.ok(line.isEqualTo(other));
+      assert.isTrue(line.isEqualTo(other));
     });
-    it("should equate its own instance with other similar instance[negative points]", function() {
+    it("should validate when other line are equal[negative points]", function() {
       const line = new Line({ x: -4, y: 2 }, { x: 4, y: -3 });
       const other = new Line({ x: -4, y: 2 }, { x: 4, y: -3 });
-      assert.ok(line.isEqualTo(other));
+      assert.isTrue(line.isEqualTo(other));
     });
 
-    it("should check the instance of the Object, where other should have similar instance", function() {
+    it("should invalidate when any one points are not equal", function() {
+      const line = new Line({ x: 2, y: 2 }, { x: 4, y: 3 });
+      const other = new Line({ x: 2, y: 2 }, { x: 2, y: 3 });
+      assert.isFalse(line.isEqualTo(other));
+    });
+
+    it("should invalidate when the given line is not a Line instance", function() {
       const line = new Line({ x: 2, y: 2 }, { x: 4, y: 3 });
       const other = { endA: { x: 2, y: 2 }, endB: { x: 4, y: 3 } };
-      assert.ok(!line.isEqualTo(other));
+      assert.isFalse(line.isEqualTo(other));
     });
 
     it("should check the instance of the Object, when other is just an empty object", function() {
       const line = new Line({ x: 2, y: 2 }, { x: 4, y: 3 });
       const other = {};
-      assert.ok(!line.isEqualTo(other));
+      assert.isFalse(line.isEqualTo(other));
     });
   });
+
   describe("length", function() {
     it("should give the line length of the instance when the coordinates are positive", function() {
       const line = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
