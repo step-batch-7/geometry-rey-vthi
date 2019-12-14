@@ -42,7 +42,12 @@ class Line {
 
   isParallelTo(other) {
     if (this === other) return false;
-    return other instanceof Line && this.slope === other.slope;
+    const areNotOverlapping =
+      getYIntercept(this.endA.x, this.endA.y, this.slope) !=
+      getYIntercept(other.endA.x, other.endA.y, other.slope);
+    return (
+      areNotOverlapping && other instanceof Line && this.slope === other.slope
+    );
   }
 
   findX(y) {

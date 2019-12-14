@@ -82,13 +82,13 @@ describe("Line", function() {
     it("should check whether the given instance of line is parallel to each other", function() {
       const line = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
       const other = new Line({ x: 2, y: 2 }, { x: 6, y: 6 });
-      assert.isTrue(line.isParallelTo(other));
+      assert.isFalse(line.isParallelTo(other));
     });
 
-    it("should return true when both the instance are similar and parallel", function() {
+    it("should return false when both the lines are overlapping", function() {
       const line = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
       const other = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
-      assert.isTrue(line.isParallelTo(other));
+      assert.isFalse(line.isParallelTo(other));
     });
 
     it("should return false when they are not parallel to each ", function() {
