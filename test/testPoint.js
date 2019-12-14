@@ -25,7 +25,17 @@ describe("Point", function() {
     it("should return true, when other point's coordinates are equal to the existing instance ", function() {
       const point = new Point(2, 3);
       const other = new Point(2, 3);
-      assert.ok(point.isEqualTo(other));
+      assert.isTrue(point.isEqualTo(other));
+    });
+
+    it("should return false, when any one of the coordinates are not equal", function() {
+      const point = new Point(2, 3);
+      const other = new Point(2, 4);
+      assert.isFalse(point.isEqualTo(other));
+    });
+    it("should return false, when other is not similar instance", function() {
+      const point = new Point(2, 3);
+      assert.isFalse(point.isEqualTo({ x: 2, y: 3 }));
     });
   });
 });
