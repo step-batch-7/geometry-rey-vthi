@@ -38,4 +38,10 @@ describe("Point", function() {
       assert.isFalse(point.isEqualTo({ x: 2, y: 3 }));
     });
   });
+  describe("clone", function() {
+    it("should give copy of existing instance", function() {
+      const point = new Point(2, 3);
+      assert.deepStrictEqual(point.clone(), point);
+    });
+  });
 });
