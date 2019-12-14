@@ -115,5 +115,10 @@ describe("Line", function() {
       const actual = line.findY(3);
       assert.approximately(actual, 7.99999998, 0.5);
     });
+    it("should give Nan when the point is outside the line segment", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
+      const actual = line.findY(4);
+      assert.isNaN(actual);
+    });
   });
 });
