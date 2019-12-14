@@ -21,4 +21,11 @@ describe("Point", function() {
       );
     });
   });
+  describe("isEqualTo", function() {
+    it("should return true, when other point's coordinates are equal to the existing instance ", function() {
+      const point = new Point(2, 3);
+      const other = new Point(2, 3);
+      assert.ok(point.isEqualTo(other));
+    });
+  });
 });
