@@ -98,14 +98,19 @@ describe("Line", function() {
   });
 
   describe("findX", function() {
-    it("should find the x value", function() {
+    it("should find the x value for the given y", function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
       const actual = line.findX(2);
       assert.strictEqual(actual, 2);
     });
+    it("should give Nan when the point is outside the line segment", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
+      const actual = line.findX(4);
+      assert.isNaN(actual);
+    });
   });
   describe("findY", function() {
-    it("should find the y value of the line", function() {
+    it("should find the y value for the given x", function() {
       const line = new Line({ x: 0, y: 6 }, { x: 3, y: 8 });
       const actual = line.findY(3);
       assert.approximately(actual, 7.99999998, 0.5);
