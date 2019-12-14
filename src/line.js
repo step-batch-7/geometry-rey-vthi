@@ -56,6 +56,16 @@ class Line {
     const yIntercept = getYIntercept(this.endA.x, this.endA.y, this.slope);
     return this.slope * x + yIntercept;
   }
+  split() {
+    const midPointOfLine = {
+      x: (this.endA.x + this.endB.x) / 2,
+      y: (this.endA.y + this.endB.y) / 2
+    };
+    return [
+      new Line(this.endA, midPointOfLine),
+      new Line(midPointOfLine, this.endB)
+    ];
+  }
 }
 
 module.exports = Line;

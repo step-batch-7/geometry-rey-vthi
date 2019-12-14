@@ -121,4 +121,12 @@ describe("Line", function() {
       assert.isNaN(actual);
     });
   });
+  describe("split", function() {
+    it("should give two split exactly at the centre of line", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
+      const splitLine1 = new Line({ x: 1, y: 1 }, { x: 2, y: 2 });
+      const splitLine2 = new Line({ x: 2, y: 2 }, { x: 3, y: 3 });
+      assert.deepStrictEqual(line.split(), [splitLine1, splitLine2]);
+    });
+  });
 });
