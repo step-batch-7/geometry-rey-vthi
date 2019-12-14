@@ -1,3 +1,5 @@
+const Point = require("./point");
+
 const arePointsEqual = function(point1, point2) {
   return point1.x === point2.x && point1.y === point2.y;
 };
@@ -68,8 +70,9 @@ class Line {
   }
   hasPoint(point) {
     return (
-      isPointIsInLine([this.endA.x, this.endB.x], point.x) ||
-      isPointIsInLine([this.endA.x, this.endB.x], point.y)
+      point instanceof Point &&
+      (isPointIsInLine([this.endA.x, this.endB.x], point.x) ||
+        isPointIsInLine([this.endA.x, this.endB.x], point.y))
     );
   }
 }

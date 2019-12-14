@@ -1,5 +1,6 @@
 const assert = require("chai").assert;
-const Line = require("../src/line.js");
+const Line = require("../src/line");
+const Point = require("../src/point");
 
 describe("Line", function() {
   describe("toString", function() {
@@ -130,9 +131,14 @@ describe("Line", function() {
     });
   });
   describe("hasPoint", function() {
-    it("should check whether the given point is in the line", function() {
+    it("should check whether the given point is in the instance of point", function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
-      assert.isTrue(line.hasPoint({ x: 2, y: 2 }));
+      assert.isFalse(line.hasPoint({ x: 2, y: 2 }));
+    });
+    it("should check whether the given point is existing in the line segment", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
+      const point = new Point(2, 2);
+      assert.isTrue(line.hasPoint(point));
     });
   });
 });
