@@ -96,4 +96,19 @@ describe("Line", function() {
       assert.approximately(actual, 0.33, 0.5);
     });
   });
+
+  describe("findX", function() {
+    it("should find the x value", function() {
+      const line = new Line({ x: 0, y: 6 }, { x: 3, y: 8 });
+      const actual = line.findX(6);
+      assert.strictEqual(actual, 0);
+    });
+  });
 });
+
+// describe("findX", function() {
+//   it("should give X for given y when line is inclined and edge point is given", function() {
+//     const line = new Line(
+//     const actual = line.findX(6);
+//     assert.strictEqual(actual, 0);
+//   });
