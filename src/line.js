@@ -66,6 +66,12 @@ class Line {
       new Line(midPointOfLine, this.endB)
     ];
   }
+  hasPoint(point) {
+    return (
+      isPointIsInLine([this.endA.x, this.endB.x], point.x) ||
+      isPointIsInLine([this.endA.x, this.endB.x], point.y)
+    );
+  }
 }
 
 module.exports = Line;

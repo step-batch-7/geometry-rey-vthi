@@ -129,4 +129,10 @@ describe("Line", function() {
       assert.deepStrictEqual(line.split(), [splitLine1, splitLine2]);
     });
   });
+  describe("hasPoint", function() {
+    it("should check whether the given point is in the line", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
+      assert.isTrue(line.hasPoint({ x: 2, y: 2 }));
+    });
+  });
 });
