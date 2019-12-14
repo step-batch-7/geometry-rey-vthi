@@ -54,22 +54,27 @@ describe("Line", function() {
   });
 
   describe("length", function() {
-    it("should give the line length of the instance when the coordinates are positive", function() {
+    it("should give the line length of the instance, when the coordinates are positive numbers", function() {
       const line = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
       const actual = line.length;
       assert.approximately(actual, 2.82, 0.5);
     });
 
-    it("should give the length of the instance when the coordinates are positive number", function() {
+    it("should give the length of the instance, when the coordinates are positive numbers", function() {
       const line = new Line({ x: 5, y: -4 }, { x: -2, y: 3 });
       const actual = line.length;
       assert.approximately(actual, 9.89, 0.5);
     });
 
-    it("should give the line length of the instance where the length is floating point number", function() {
+    it("should give the line length of the instance, where the length is floating point number", function() {
       const line = new Line({ x: 5, y: 4 }, { x: 2, y: 3 });
       const actual = line.length;
       assert.approximately(actual, 3.16, 0.05);
+    });
+
+    it("should give 0 length when both the end points are equal", function() {
+      const line = new Line({ x: 5, y: 4 }, { x: 5, y: 4 });
+      assert.strictEqual(line.length, 0);
     });
   });
 
@@ -77,19 +82,19 @@ describe("Line", function() {
     it("should check whether the given instance of line is parallel to each other", function() {
       const line = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
       const other = new Line({ x: 2, y: 2 }, { x: 6, y: 6 });
-      assert.ok(line.isParallelTo(other));
+      assert.isTrue(line.isParallelTo(other));
     });
 
-    it("should return true when both the instance are ", function() {
+    it("should return true when both the instance are similar and parallel", function() {
       const line = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
       const other = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
-      assert.ok(line.isParallelTo(other));
+      assert.isTrue(line.isParallelTo(other));
     });
 
     it("should return false when they are not parallel to each ", function() {
       const line = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
       const other = new Line({ x: 2, y: 2 }, { x: 4, y: 5 });
-      assert.ok(!line.isParallelTo(other));
+      assert.isFalse(line.isParallelTo(other));
     });
   });
 
@@ -117,6 +122,7 @@ describe("Line", function() {
       assert.isNaN(actual);
     });
   });
+
   describe("findY", function() {
     it("should find the y value for the given x", function() {
       const line = new Line({ x: 0, y: 6 }, { x: 3, y: 8 });
@@ -129,14 +135,16 @@ describe("Line", function() {
       assert.isNaN(actual);
     });
   });
+
   describe("split", function() {
-    it("should give two split exactly at the centre of line", function() {
+    it("should split the line into two using exact mid point", function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
       const splitLine1 = new Line({ x: 1, y: 1 }, { x: 2, y: 2 });
       const splitLine2 = new Line({ x: 2, y: 2 }, { x: 3, y: 3 });
       assert.deepStrictEqual(line.split(), [splitLine1, splitLine2]);
     });
   });
+
   describe("hasPoint", function() {
     it("should check whether the given point is in the instance of point", function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
