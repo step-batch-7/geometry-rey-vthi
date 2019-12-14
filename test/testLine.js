@@ -5,18 +5,18 @@ describe("Line", function() {
   describe("toString", function() {
     it("should give the representation of the given line [positive points]", function() {
       const line = new Line({ x: 2, y: 2 }, { x: 4, y: 3 });
-      const expected = `Line (2,2) (4,3)`;
+      const expected = `[Line (2,2) to (4,3)]`;
       assert.strictEqual(line.toString(), expected);
     });
     it("should give the representation of the given line [negative points]", function() {
       const line = new Line({ x: -3, y: 3 }, { x: -8, y: 2 });
-      const expected = `Line (-3,3) (-8,2)`;
+      const expected = `[Line (-3,3) to (-8,2)]`;
       assert.strictEqual(line.toString(), expected);
     });
 
     it("should give the representation of the given line, when extra points are given", function() {
       const line = new Line({ x: 3, y: 3 }, { x: 8, y: 2 }, { x: 3, y: 2 });
-      const expected = `Line (3,3) (8,2)`;
+      const expected = `[Line (3,3) to (8,2)]`;
       assert.strictEqual(line.toString(), expected);
     });
   });
@@ -64,6 +64,7 @@ describe("Line", function() {
       assert.approximately(actual, 3.16, 0.05);
     });
   });
+
   describe("isParallelTo", function() {
     it("should check whether the given instance of line is parallel to each other", function() {
       const line = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
@@ -71,7 +72,7 @@ describe("Line", function() {
       assert.ok(line.isParallelTo(other));
     });
 
-    it("should return true when both the instance are equal", function() {
+    it("should return true when both the instance are ", function() {
       const line = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
       const other = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
       assert.ok(line.isParallelTo(other));

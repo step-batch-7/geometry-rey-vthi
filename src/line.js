@@ -8,7 +8,7 @@ class Line {
     this.endB = { x: endB.x, y: endB.y };
   }
   toString() {
-    return `Line (${this.endA.x},${this.endA.y}) (${this.endB.x},${this.endB.y})`;
+    return `[Line (${this.endA.x},${this.endA.y}) to (${this.endB.x},${this.endB.y})]`;
   }
   isEqualTo(other) {
     return (
