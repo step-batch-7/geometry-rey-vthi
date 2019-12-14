@@ -99,14 +99,23 @@ describe("Line", function() {
   });
 
   describe("slope", function() {
-    it("should give the slope of the line instance", function() {
+    it("should give the slope of the line instance[positive slope value]", function() {
       const line = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
       assert.strictEqual(line.slope, 1);
+    });
+
+    it("should give the slope of the line instance[positive slope value]", function() {
+      const line = new Line({ x: 2, y: 2 }, { x: 1, y: 4 });
+      assert.strictEqual(line.slope, -2);
     });
     it("should give the slope of the line instance, where the slope has floating point value", function() {
       const line = new Line({ x: 5, y: 4 }, { x: 2, y: 3 });
       const actual = line.slope;
       assert.approximately(actual, 0.33, 0.5);
+    });
+    it("should give NaN, when both the ends are same", function() {
+      const line = new Line({ x: 2, y: 2 }, { x: 2, y: 2 });
+      assert.isNaN(line.slope);
     });
   });
 
@@ -124,7 +133,7 @@ describe("Line", function() {
   });
 
   describe("findY", function() {
-    it("should find the y value for the given x", function() {
+    it("should find the y value for the given x[floating y value", function() {
       const line = new Line({ x: 0, y: 6 }, { x: 3, y: 8 });
       const actual = line.findY(3);
       assert.approximately(actual, 7.99999998, 0.5);
