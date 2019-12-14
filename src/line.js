@@ -41,7 +41,13 @@ class Line {
 
   findX(y) {
     const yIntercept = getYIntercept(this.endA.x, this.endA.y, this.slope);
+    console.log(this.slope);
     return (y - yIntercept) / this.slope;
+  }
+
+  findY(x) {
+    const yIntercept = getYIntercept(this.endA.x, this.endA.y, this.slope);
+    return this.slope * x + yIntercept;
   }
 }
 
