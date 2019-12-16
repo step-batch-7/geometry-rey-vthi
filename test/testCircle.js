@@ -14,4 +14,11 @@ describe("Circle", function() {
       assert.strictEqual(circle.toString(), expected);
     });
   });
+  describe("isEqualTo", function() {
+    it("should check whether both the circle are at same location and has equal radii", function() {
+      const circle1 = new Circle({ x: 0, y: 0 }, 4);
+      const circle2 = new Circle({ x: 0, y: 0 }, 4);
+      assert.isTrue(circle1.isEqualTo(circle2));
+    });
+  });
 });
