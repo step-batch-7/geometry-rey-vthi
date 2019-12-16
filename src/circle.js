@@ -1,6 +1,8 @@
+const Point = require("./point");
+
 class Circle {
   constructor(point, radius) {
-    this.point = { x: point.x, y: point.y };
+    this.point = new Point(point.x, point.y);
     this.radius = radius;
   }
   toString() {
