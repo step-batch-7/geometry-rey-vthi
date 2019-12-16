@@ -49,5 +49,9 @@ describe("Circle", function() {
       const circle = new Circle({ x: 3, y: 4 }, 4);
       assert.approximately(circle.perimeter, 25.12, 0.5);
     });
+    it("should give 0,when the radius of circle is 0", function() {
+      const circle = new Circle({ x: 3, y: 5 }, 0);
+      assert.strictEqual(circle.perimeter, 0);
+    });
   });
 });
