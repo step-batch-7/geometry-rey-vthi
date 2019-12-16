@@ -1,6 +1,7 @@
 const assert = require("chai").assert;
 const Line = require("../src/line");
 const Point = require("../src/point");
+const Circle = require("../src/circle");
 
 describe("Point", function() {
   describe("toString", function() {
@@ -70,6 +71,11 @@ describe("Point", function() {
       const line = new Line({ x: 3, y: 3 }, { x: 4, y: 4 });
       const point = new Point(3, 3);
       assert.isTrue(point.isOn(line));
+    });
+    it("should validate for circle, where the area 0 and centre is given", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 0);
+      const point = new Point(0, 0);
+      assert.isOk(point.isOn(circle));
     });
   });
 });
