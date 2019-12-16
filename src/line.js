@@ -92,10 +92,15 @@ class Line {
     const ratio = dt / this.length;
     const xt = (1 - ratio) * this.endA.x + ratio * this.endB.x;
     const yt = (1 - ratio) * this.endA.y + ratio * this.endB.y;
-    return { x: xt, y: yt };
+    return new Point(xt, yt);
   }
-
-  fin;
+  findPointFromEnd(dt) {
+    if (dt > this.length) return null;
+    const ratio = dt / this.length;
+    const xt = (1 - ratio) * this.endB.x + ratio * this.endA.x;
+    const yt = (1 - ratio) * this.endB.y + ratio * this.endA.y;
+    return new Point(xt, yt);
+  }
 }
 
 module.exports = Line;
