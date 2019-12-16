@@ -96,6 +96,12 @@ describe("Line", function() {
       const other = new Line({ x: 2, y: 2 }, { x: 4, y: 5 });
       assert.isFalse(line.isParallelTo(other));
     });
+
+    it("should return false when the two lines are overlapping and parallel to y axis ", function() {
+      const line = new Line({ x: 2, y: 0 }, { x: 2, y: 4 });
+      const other = new Line({ x: 3, y: 5 }, { x: 3, y: 7 });
+      assert.isTrue(line.isParallelTo(other));
+    });
   });
 
   describe("slope", function() {

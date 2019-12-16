@@ -11,6 +11,14 @@ const isPointIsInLine = function(endPoints, coordinate) {
   const [endA, endB] = endPoints.sort();
   return coordinate >= endA && coordinate <= endB;
 };
+
+const arePointsCollinear = function(point1, point2, point3) {
+  return (
+    (point2.y - point1.y) * (point3.x - point2.x) ===
+    (point3.y - point2.y) * (point2.x - point1.x)
+  );
+};
+
 class Line {
   constructor(endA, endB) {
     this.endA = { x: endA.x, y: endA.y };
@@ -41,13 +49,9 @@ class Line {
   }
 
   isParallelTo(other) {
-    if (this === other) return false;
-    const areNotOverlapping =
-      getYIntercept(this.endA.x, this.endA.y, this.slope) !=
-      getYIntercept(other.endA.x, other.endA.y, other.slope);
-    return (
-      areNotOverlapping && other instanceof Line && this.slope === other.slope
-    );
+    if (this === other || !other instanceof Line) return false;
+    if (arePointsCollinear(this.endA, this.endB, other.endA)) return false;
+    return this.slope === other.slope;
   }
 
   findX(y) {
