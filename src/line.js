@@ -89,7 +89,7 @@ class Line {
     if (dt > this.length) return null;
     const ratio = dt / this.length;
     const xt = (1 - ratio) * this.endA.x + ratio * this.endB.x;
-    const yt = (1 - ratio) * this.endA.y + ratio * this.y;
+    const yt = (1 - ratio) * this.endA.y + ratio * this.endB.y;
     return { x: xt, y: yt };
   }
 }
