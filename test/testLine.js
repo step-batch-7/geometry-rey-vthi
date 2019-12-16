@@ -173,11 +173,11 @@ describe("Line", function() {
   describe("hasPoint", function() {
     it("should check whether the given point is in the instance of point", function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
-      assert.isFalse(line.hasPoint({ x: 2, y: 2 }));
+      assert.isFalse(line.hasPoint({ x: 1, y: 1 }));
     });
     it("should check whether the given point is existing in the line segment", function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
-      const point = new Point(2, 2);
+      const point = new Point(1, 1);
       assert.isTrue(line.hasPoint(point));
     });
     it("should return false if the point doesn't exist in that line segment", function() {

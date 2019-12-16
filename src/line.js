@@ -1,8 +1,5 @@
 const Point = require("./point");
 
-const arePointsEqual = function(point1, point2) {
-  return point1.x === point2.x && point1.y === point2.y;
-};
 const getYIntercept = function(x, y, m) {
   return y - m * x;
 };
@@ -28,19 +25,16 @@ const getPoint = function(ratio, point1, point2) {
 
 class Line {
   constructor(endA, endB) {
-    this.endA = { x: endA.x, y: endA.y };
-    this.endB = { x: endB.x, y: endB.y };
+    this.endA = new Point(endA.x, endA.y);
+    this.endB = new Point(endB.x, endB.y);
   }
   toString() {
     return `[Line (${this.endA.x},${this.endA.y}) to (${this.endB.x},${this.endB.y})]`;
   }
   isEqualTo(other) {
-    if (!(other instanceof Line)) return false;
     return (
-      (arePointsEqual(this.endA, other.endA) &&
-        arePointsEqual(this.endB, other.endB)) ||
-      (arePointsEqual(this.endA, other.endB) &&
-        arePointsEqual(this.endB, other.endA))
+      (this.endA.isEqualTo(other.endA) && this.endB.isEqualTo(other.endB)) ||
+      (this.endA.isEqualTo(other.endB) && this.endB.isEqualTo(other.endA))
     );
   }
 
@@ -87,10 +81,9 @@ class Line {
     ];
   }
   hasPoint(point) {
-    if (!(point instanceof Point)) return false;
     return (
-      isPointIsInLine([this.endA.x, this.endB.x], point.x) &&
-      isPointIsInLine([this.endA.y, this.endB.y], point.y)
+      point instanceof Point &&
+      (point.x === this.findX(point.y) || point.y === this.findY(point.x))
     );
   }
 
