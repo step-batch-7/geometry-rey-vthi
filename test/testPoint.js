@@ -56,5 +56,11 @@ describe("Point", function() {
       const p1 = new Point(5, 4);
       assert.strictEqual(p1.findDistanceTo(p1), 0);
     });
+    it("should give the length of the instance, when the coordinates are negative numbers", function() {
+      const p1 = new Point(5, -4);
+      const p2 = new Point(-2, 3);
+      const actual = p1.findDistanceTo(p2);
+      assert.approximately(actual, 9.89, 0.5);
+    });
   });
 });

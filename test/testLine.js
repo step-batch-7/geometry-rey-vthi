@@ -60,7 +60,7 @@ describe("Line", function() {
       assert.approximately(actual, 2.82, 0.5);
     });
 
-    it("should give the length of the instance, when the coordinates are positive numbers", function() {
+    it("should give the length of the instance, when the coordinates are negative numbers", function() {
       const line = new Line({ x: 5, y: -4 }, { x: -2, y: 3 });
       const actual = line.length;
       assert.approximately(actual, 9.89, 0.5);
