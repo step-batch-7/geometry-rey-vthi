@@ -61,5 +61,10 @@ describe("Circle", function() {
       const point = new Point(0, 5);
       assert.isTrue(circle.hasPoint(point));
     });
+    it("should return when the point is not on the circle", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const point = new Point(0, 3);
+      assert.isFalse(circle.hasPoint(point));
+    });
   });
 });
