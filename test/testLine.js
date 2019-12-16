@@ -176,4 +176,11 @@ describe("Line", function() {
       assert.isFalse(line.hasPoint(point));
     });
   });
+
+  describe("findPointStartFrom", function() {
+    it("should give point,when the length is gi", function() {
+      const line = new Line({ x: 2, y: 1 }, { x: 4, y: 1 });
+      assert.deepStrictEqual(line.findPointFromStart(1), { x: 3, y: 1 });
+    });
+  });
 });

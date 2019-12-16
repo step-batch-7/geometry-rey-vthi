@@ -84,6 +84,14 @@ class Line {
         isPointIsInLine([this.endA.x, this.endB.x], point.y))
     );
   }
+
+  findPointFromStart(dt) {
+    if (dt > this.length) return null;
+    const ratio = dt / this.length;
+    const xt = (1 - ratio) * this.endA.x + ratio * this.endB.x;
+    const yt = (1 - ratio) * this.endA.y + ratio * this.y;
+    return { x: xt, y: yt };
+  }
 }
 
 module.exports = Line;
