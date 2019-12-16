@@ -81,9 +81,11 @@ class Line {
     ];
   }
   hasPoint(point) {
+    if (!(point instanceof Point)) return false;
     return (
-      point instanceof Point &&
-      (point.x === this.findX(point.y) || point.y === this.findY(point.x))
+      isPointIsInLine([this.endA.x, this.endB.x], point.x) &&
+      isPointIsInLine([this.endA.y, this.endB.y], point.y) &&
+      arePointsCollinear(this.endA, this.endB, point)
     );
   }
 

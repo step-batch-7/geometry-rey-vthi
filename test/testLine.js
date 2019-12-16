@@ -180,6 +180,12 @@ describe("Line", function() {
       const point = new Point(1, 1);
       assert.isTrue(line.hasPoint(point));
     });
+
+    it("should check whether the given point is existing in the line segment", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
+      const point = new Point(2, 2);
+      assert.isTrue(line.hasPoint(point));
+    });
     it("should return false if the point doesn't exist in that line segment", function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
       const point = new Point(4, 4);
