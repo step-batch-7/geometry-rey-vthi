@@ -19,6 +19,13 @@ const arePointsCollinear = function(point1, point2, point3) {
   );
 };
 
+const getPoint = function(ratio, point1, point2) {
+  if (ratio > 1 || ratio < 0) return null;
+  const x = (1 - ratio) * point1.x + ratio * point2.x;
+  const y = (1 - ratio) * point1.y + ratio * point2.y;
+  return new Point(x, y);
+};
+
 class Line {
   constructor(endA, endB) {
     this.endA = { x: endA.x, y: endA.y };
@@ -88,18 +95,12 @@ class Line {
   }
 
   findPointFromStart(dt) {
-    if (dt > this.length) return null;
     const ratio = dt / this.length;
-    const xt = (1 - ratio) * this.endA.x + ratio * this.endB.x;
-    const yt = (1 - ratio) * this.endA.y + ratio * this.endB.y;
-    return new Point(xt, yt);
+    return getPoint(ratio, this.endA, this.endB);
   }
   findPointFromEnd(dt) {
-    if (dt > this.length) return null;
     const ratio = dt / this.length;
-    const xt = (1 - ratio) * this.endB.x + ratio * this.endA.x;
-    const yt = (1 - ratio) * this.endB.y + ratio * this.endA.y;
-    return new Point(xt, yt);
+    return getPoint(ratio, this.endB, this.endA);
   }
 }
 

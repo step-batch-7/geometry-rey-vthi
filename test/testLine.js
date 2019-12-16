@@ -199,12 +199,21 @@ describe("Line", function() {
       const actualPoint = line.findPointFromStart(1);
       assert.ok(actualPoint.isEqualTo(expectedPoint));
     });
-
-    it("should give a point from the end, when the distance is given ", () => {
+    it("should invalidate when the given distance is more than the length of the line", function() {
+      const line = new Line({ x: 0, y: 0 }, { x: 4, y: 0 });
+      assert.isNull(line.findPointFromStart(5));
+    });
+  });
+  describe("findPointFromEnd", function() {
+    it("should give the point, from the end of the line", function() {
       const line = new Line({ x: 5, y: 0 }, { x: 0, y: 0 });
       const expectedPoint = new Point(3, 0);
       const actualPoint = line.findPointFromStart(2);
       assert.ok(actualPoint.isEqualTo(expectedPoint));
+    });
+    it("should invalidate when the given distance is more than the length of the line", function() {
+      const line = new Line({ x: 0, y: 0 }, { x: 4, y: 0 });
+      assert.isNull(line.findPointFromStart(5));
     });
   });
 });
