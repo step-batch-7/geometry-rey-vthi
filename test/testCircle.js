@@ -20,5 +20,19 @@ describe("Circle", function() {
       const circle2 = new Circle({ x: 0, y: 0 }, 4);
       assert.isTrue(circle1.isEqualTo(circle2));
     });
+    it("should invalidate when the circle location are not same", function() {
+      const circle1 = new Circle({ x: 0, y: 0 }, 4);
+      const circle2 = new Circle({ x: 0, y: 6 }, 4);
+      assert.isFalse(circle1.isEqualTo(circle2));
+    });
+    it("should invalidate when the circle radius are not same", function() {
+      const circle1 = new Circle({ x: 0, y: 6 }, 3);
+      const circle2 = new Circle({ x: 0, y: 6 }, 4);
+      assert.isFalse(circle1.isEqualTo(circle2));
+    });
+    it("should invalidate when the other is not the instance of Circle class", function() {
+      const circle = new Circle({ x: 0, y: 6 }, 4);
+      assert.isFalse(circle.isEqualTo({}));
+    });
   });
 });
