@@ -52,5 +52,9 @@ describe("Point", function() {
       const actual = p1.findDistanceTo(p2);
       assert.approximately(actual, 3.16, 0.05);
     });
+    it("should give length 0, when both points are in the axis", function() {
+      const p1 = new Point(5, 4);
+      assert.strictEqual(p1.findDistanceTo(p1), 0);
+    });
   });
 });
