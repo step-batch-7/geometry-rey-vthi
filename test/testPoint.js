@@ -44,4 +44,13 @@ describe("Point", function() {
       assert.deepStrictEqual(point.clone(), point);
     });
   });
+
+  describe("findDistanceTo", function() {
+    it("should give length of floating point value", function() {
+      const p1 = new Point(5, 4);
+      const p2 = new Point(2, 3);
+      const actual = p1.findDistanceTo(p2);
+      assert.approximately(actual, 3.16, 0.05);
+    });
+  });
 });
