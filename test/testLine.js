@@ -33,6 +33,11 @@ describe("Line", function() {
       const other = new Line({ x: -4, y: 2 }, { x: 4, y: -3 });
       assert.isTrue(line.isEqualTo(other));
     });
+    it("should validate when other line are equal[negative points]", function() {
+      const line = new Line({ x: -4, y: 2 }, { x: 4, y: -3 });
+      const other = new Line({ x: 4, y: -3 }, { x: -4, y: 2 });
+      assert.isTrue(line.isEqualTo(other));
+    });
 
     it("should invalidate when any one points are not equal", function() {
       const line = new Line({ x: 2, y: 2 }, { x: 4, y: 3 });
@@ -144,6 +149,11 @@ describe("Line", function() {
       const actual = line.findY(3);
       assert.approximately(actual, 7.99999998, 0.5);
     });
+    it("should find the y value for the given x[floating y value", function() {
+      const line = new Line({ x: 0, y: 0 }, { x: 0, y: 8 });
+      const actual = line.findY(0);
+      assert.strictEqual(actual, 0);
+    });
     it("should give Nan when the point is outside the line segment", function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
       const actual = line.findY(4);
@@ -175,12 +185,17 @@ describe("Line", function() {
       const point = new Point(4, 4);
       assert.isFalse(line.hasPoint(point));
     });
+    it("should return false if the point doesn't exist in that line segment", function() {
+      const line = new Line({ x: 0, y: 0 }, { x: 3, y: 3 });
+      const point = new Point(2, 4);
+      assert.isFalse(line.hasPoint(point));
+    });
   });
 
   describe("findPointStartFrom", function() {
     it("should give point,when the length is gi", function() {
-      const line = new Line({ x: 2, y: 1 }, { x: 4, y: 1 });
-      assert.deepStrictEqual(line.findPointFromStart(1), { x: 3, y: 1 });
+      const line = new Line({ x: 0, y: 0 }, { x: 4, y: 0 });
+      assert.deepStrictEqual(line.findPointFromStart(1), { x: 1, y: 0 });
     });
   });
 });

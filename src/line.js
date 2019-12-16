@@ -28,10 +28,12 @@ class Line {
     return `[Line (${this.endA.x},${this.endA.y}) to (${this.endB.x},${this.endB.y})]`;
   }
   isEqualTo(other) {
+    if (!(other instanceof Line)) return false;
     return (
-      other instanceof Line &&
-      arePointsEqual(this.endA, other.endA) &&
-      arePointsEqual(this.endB, other.endB)
+      (arePointsEqual(this.endA, other.endA) &&
+        arePointsEqual(this.endB, other.endB)) ||
+      (arePointsEqual(this.endA, other.endB) &&
+        arePointsEqual(this.endB, other.endA))
     );
   }
 
@@ -63,7 +65,7 @@ class Line {
 
   findY(x) {
     if (!isPointIsInLine([this.endA.x, this.endB.x], x)) return NaN;
-    if (this.slope === 0) return this.endA.y;
+    if (this.slope === Infinity || this.slope === -Infinity) return this.endA.y;
     const yIntercept = getYIntercept(this.endA.x, this.endA.y, this.slope);
     return this.slope * x + yIntercept;
   }
@@ -78,10 +80,10 @@ class Line {
     ];
   }
   hasPoint(point) {
+    if (!(point instanceof Point)) return false;
     return (
-      point instanceof Point &&
-      (isPointIsInLine([this.endA.x, this.endB.x], point.x) ||
-        isPointIsInLine([this.endA.x, this.endB.x], point.y))
+      isPointIsInLine([this.endA.x, this.endB.x], point.x) &&
+      isPointIsInLine([this.endA.y, this.endB.y], point.y)
     );
   }
 
@@ -92,6 +94,8 @@ class Line {
     const yt = (1 - ratio) * this.endA.y + ratio * this.endB.y;
     return { x: xt, y: yt };
   }
+
+  fin;
 }
 
 module.exports = Line;
