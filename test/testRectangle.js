@@ -83,9 +83,4 @@ describe("Rectangle ", function() {
       assert.isFalse(rectangle.hasPoint({ x: 2, y: 3 }));
     });
   });
-  describe("covers", function() {
-    it("should check whether the given point is covered in rectangle", function() {
-      assert.type(actual, expected);
-    });
-  });
 });
