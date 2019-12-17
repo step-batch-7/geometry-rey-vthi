@@ -23,10 +23,7 @@ class Circle {
     return this.point.findDistanceTo(point) === this.radius;
   }
   moveTo(other) {
-    return (
-      other instanceof Point &&
-      new Circle({ x: other.x, y: other.y }, this.radius)
-    );
+    return new Circle({ x: other.x, y: other.y }, this.radius);
   }
   covers(point) {
     if (!(point instanceof Point)) return false;
