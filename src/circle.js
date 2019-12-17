@@ -23,7 +23,10 @@ class Circle {
     return this.point.findDistanceTo(point) === this.radius;
   }
   moveTo(other) {
-    return new Circle({ x: other.x, y: other.y }, this.radius);
+    return (
+      other instanceof Point &&
+      new Circle({ x: other.x, y: other.y }, this.radius)
+    );
   }
 }
 module.exports = Circle;

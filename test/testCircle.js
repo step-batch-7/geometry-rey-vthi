@@ -80,10 +80,16 @@ describe("Circle", function() {
   });
   describe("moveTo", function() {
     it("should change the circle's x and y coordinates", function() {
-      const circle = new Circle({ x: 0, y: 0 });
-      const expected = new Circle({ x: 1, y: 1 });
-      const actual = circle.moveTo({ x: 1, y: 1 });
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const expected = new Circle({ x: 1, y: 1 }, 5);
+      const point = new Point(1, 1);
+      const actual = circle.moveTo(point);
       assert.isTrue(actual.isEqualTo(expected));
     });
+  });
+  it("should not change, when the given coordinates are not an Intance of Point", function() {
+    const circle = new Circle({ x: 0, y: 0 }, 5);
+    const actual = circle.moveTo({ x: 1, y: 1 });
+    assert.isFalse(actual);
   });
 });
