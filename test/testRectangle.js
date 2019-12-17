@@ -83,4 +83,25 @@ describe("Rectangle ", function() {
       assert.isFalse(rectangle.hasPoint({ x: 2, y: 3 }));
     });
   });
+  describe("covers", function() {
+    it("should check whether the given point is on the edge of the rectangle", function() {
+      const rectangle = new Rectangle({ x: 2, y: 3 }, { x: 7, y: 8 });
+      const point = new Point(2, 3);
+      assert.isTrue(rectangle.covers(point));
+    });
+    it("should validate when the given point is inside the rectangle", function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 6, y: 6 });
+      const point = new Point(3, 3);
+      assert.isTrue(rectangle.covers(point));
+    });
+    it("should invalidate when the given point is outside the rectangle", function() {
+      const rectangle = new Rectangle({ x: 6, y: 6 }, { x: 1, y: 1 });
+      const point = new Point(3, 0);
+      assert.isFalse(rectangle.covers(point));
+    });
+    it("should invalidate when the given point is not an instance of Point", function() {
+      const rectangle = new Rectangle({ x: 6, y: 6 }, { x: 1, y: 1 });
+      assert.isFalse(rectangle.covers({ x: 6, y: 6 }));
+    });
+  });
 });
