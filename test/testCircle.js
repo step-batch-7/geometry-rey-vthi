@@ -99,5 +99,19 @@ describe("Circle", function() {
       const point = new Point(0, 4);
       assert.isTrue(circle.covers(point));
     });
+    it("should invalidate, when the point is inside the circle", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const point = new Point(0, 6);
+      assert.isFalse(circle.covers(point));
+    });
+    it("should validate, when the point is on the circle", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const point = new Point(0, 5);
+      assert.isTrue(circle.covers(point));
+    });
+    it("should invalidate, when the given point is not an instance of point", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      assert.isFalse(circle.covers({ x: 0, y: 4 }));
+    });
   });
 });

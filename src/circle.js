@@ -30,7 +30,7 @@ class Circle {
   }
   covers(point) {
     if (!(point instanceof Point)) return false;
-    return this.point.findDistanceTo(point) < this.radius;
+    return this.point.findDistanceTo(point) <= this.radius;
   }
 }
 module.exports = Circle;
