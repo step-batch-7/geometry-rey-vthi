@@ -43,11 +43,10 @@ class Rectangle {
   }
   covers(point) {
     if (!(point instanceof Point)) return false;
-    const x = point.x >= this.vertexB.x && point.x <= this.vertexD.x;
-    const y = point.y >= this.vertexB.y && point.y <= this.vertexD.y;
+    const x = point.x > this.vertexB.x && point.x < this.vertexD.x;
+    const y = point.y > this.vertexB.y && point.y < this.vertexD.y;
     return x && y;
   }
 }
-// const rectangle = new Rectangle({ x: 2, y: 3 }, { x: 7, y: 8 });
-// const point = new Point(2, 3);
+
 module.exports = Rectangle;
