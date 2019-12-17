@@ -28,4 +28,23 @@ describe("Rectangle ", function() {
       assert.strictEqual(rectangle.area, 0);
     });
   });
+
+  describe("perimeter", function() {
+    it("should find perimeter of the rectangle", function() {
+      const rectangle = new Rectangle({ x: 2, y: 3 }, { x: 1, y: 1 });
+      assert.strictEqual(rectangle.perimeter, 6);
+    });
+    it("should find perimeter zero of a rectangle,when length and width is 0", function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 1, y: 1 });
+      assert.strictEqual(rectangle.perimeter, 0);
+    });
+    it("should get perimeter of given diagonal parallel to x-axis", function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 3, y: 1 });
+      assert.strictEqual(rectangle.perimeter, 4);
+    });
+    it("should get perimeter of given diagonal parallel to y-axis", function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 1, y: 5 });
+      assert.strictEqual(rectangle.perimeter, 8);
+    });
+  });
 });

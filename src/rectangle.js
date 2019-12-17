@@ -1,3 +1,9 @@
+const findLengthAndWidth = function(diagonalEndA, diagonalEndB) {
+  const length = diagonalEndA.x - diagonalEndB.x;
+  const width = diagonalEndA.y - diagonalEndB.y;
+  return [length, width];
+};
+
 class Rectangle {
   constructor(diagonalEndA, diagonalEndB) {
     this.diagonalEndA = { x: diagonalEndA.x, y: diagonalEndA.y };
@@ -10,7 +16,12 @@ class Rectangle {
   get area() {
     const length = this.diagonalEndA.x - this.diagonalEndB.x;
     const width = this.diagonalEndA.y - this.diagonalEndB.y;
-    return length * width;
+    return Math.abs(length * width);
+  }
+  get perimeter() {
+    const length = this.diagonalEndA.x - this.diagonalEndB.x;
+    const width = this.diagonalEndA.y - this.diagonalEndB.y;
+    return 2 * Math.abs(length + width);
   }
 }
 
