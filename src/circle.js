@@ -28,5 +28,9 @@ class Circle {
       new Circle({ x: other.x, y: other.y }, this.radius)
     );
   }
+  covers(point) {
+    if (!(point instanceof Point)) return false;
+    return this.point.findDistanceTo(point) < this.radius;
+  }
 }
 module.exports = Circle;

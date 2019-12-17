@@ -92,4 +92,12 @@ describe("Circle", function() {
     const actual = circle.moveTo({ x: 1, y: 1 });
     assert.isFalse(actual);
   });
+
+  describe("covers", function() {
+    it("should validate, when the point is inside the circle", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 5);
+      const point = new Point(0, 4);
+      assert.isTrue(circle.covers(point));
+    });
+  });
 });
