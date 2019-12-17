@@ -43,9 +43,9 @@ class Rectangle {
   }
   covers(point) {
     if (!(point instanceof Point)) return false;
-    const x = point.x > this.vertexB.x && point.x < this.vertexD.x;
-    const y = point.y > this.vertexB.y && point.y < this.vertexD.y;
-    return x && y;
+    const [x1, x2] = [this.vertexB.x, this.vertexD.x].sort();
+    const [y1, y2] = [this.vertexB.y, this.vertexD.y].sort();
+    return point.x > x1 && point.x < x2 && point.y > y1 && point.y < y2;
   }
 }
 
