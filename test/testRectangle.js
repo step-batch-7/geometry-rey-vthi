@@ -1,5 +1,6 @@
 const assert = require("chai").assert;
 const Rectangle = require("../src/rectangle");
+const Point = require("../src/point");
 
 describe("Rectangle ", function() {
   describe("toString", function() {
@@ -52,6 +53,34 @@ describe("Rectangle ", function() {
       const rectangle1 = new Rectangle({ x: 1, y: 1 }, { x: 1, y: 5 });
       const rectangle2 = new Rectangle({ x: 1, y: 1 }, { x: 1, y: 5 });
       assert.isTrue(rectangle1.isEqualTo(rectangle2));
+    });
+
+    it("should invalidate when given object is not a instance of Rectangle", function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 2, y: 3 });
+      const other = { vertexB: { x: 1, y: 1 }, vertexD: { x: 2, y: 3 } };
+      assert.isFalse(rectangle.isEqualTo(other));
+    });
+    it("should invalidate when given rectangle is not a equal", function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 2, y: 3 });
+      const other = { vertexB: { x: 1, y: 1 }, vertexD: { x: 4, y: 2 } };
+      assert.isFalse(rectangle.isEqualTo(other));
+    });
+  });
+
+  describe("hasPoint", function() {
+    it("should predicate whether the given point is on the edge of existing rectangle", function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 2, y: 3 });
+      const point = new Point(2, 3);
+      assert.isTrue(rectangle.hasPoint(point));
+    });
+    it("should invalidate when the given point is not on the edge of rectangle", function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 2, y: 3 });
+      const point = new Point(2, 5);
+      assert.isFalse(rectangle.hasPoint(point));
+    });
+    it("should invalidate when the given point is not the instance of Point", function() {
+      const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 2, y: 3 });
+      assert.isFalse(rectangle.hasPoint({ x: 2, y: 3 }));
     });
   });
 });
