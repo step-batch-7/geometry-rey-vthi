@@ -4,12 +4,12 @@ const Point = require("../src/point");
 
 describe("Circle", function() {
   describe("toString", function() {
-    it("should give the representation of circle ", function() {
+    it("should give the representation of circle[positive coordinates] ", function() {
       const circle = new Circle({ x: 1, y: 2 }, 5);
       const expected = "[Circle @(1, 2) radius 5]";
       assert.strictEqual(circle.toString(), expected);
     });
-    it("should give the representation of circle[positive coordinates", function() {
+    it("should give the representation of circle[negative coordinates]", function() {
       const circle = new Circle({ x: -1, y: 2 }, 3);
       const expected = "[Circle @(-1, 2) radius 3]";
       assert.strictEqual(circle.toString(), expected);
@@ -35,10 +35,16 @@ describe("Circle", function() {
       const circle = new Circle({ x: 0, y: 6 }, 4);
       assert.isFalse(circle.isEqualTo({}));
     });
+    it("should not validate if Circle object is not given", function() {
+      const circle1 = new Circle({ x: 5, y: 2 }, 5);
+      const circle2 = { point: { x: 3, y: 4 }, radius: 5 };
+      assert.isNotOk(circle1.isEqualTo(circle2));
+    });
   });
   describe("area", function() {
     it("it should find the area of the circle", function() {
       const circle = new Circle({ x: 0, y: 0 }, 7);
+      assert.approximately(circle.area, 153.93, 0.5);
     });
     it("should give 0,when the radius of circle is 0", function() {
       const circle = new Circle({ x: 3, y: 5 }, 0);
@@ -65,6 +71,11 @@ describe("Circle", function() {
       const circle = new Circle({ x: 0, y: 0 }, 5);
       const point = new Point(0, 3);
       assert.isFalse(circle.hasPoint(point));
+    });
+    it("should validate the circle,when the area is zero and centre is given", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 0);
+      const point = new Point(0, 0);
+      assert.isOk(circle.hasPoint(point));
     });
   });
 });

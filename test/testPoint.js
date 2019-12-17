@@ -13,14 +13,10 @@ describe("Point", function() {
   describe("visit", function() {
     it("should perform specified operation on x and y", function() {
       const point = new Point(2, 3);
-      assert.strictEqual(
-        point.visit((x, y) => x + y),
-        5
-      );
-      assert.strictEqual(
-        point.visit((x, y) => x * y),
-        6
-      );
+      const actual1 = point.visit((x, y) => x + y);
+      assert.strictEqual(actual1, 5);
+      const actual2 = point.visit((x, y) => x * y);
+      assert.strictEqual(actual2, 6);
     });
   });
   describe("isEqualTo", function() {
@@ -72,10 +68,35 @@ describe("Point", function() {
       const point = new Point(3, 3);
       assert.isTrue(point.isOn(line));
     });
+    it("should return, when the point is not on the line", function() {
+      const line = new Line({ x: 1, y: 1 }, { x: 5, y: 5 });
+      const point = new Point(8, 8);
+      assert.isFalse(point.isOn(line));
+    });
+    it("should throw error, when the object doesn't contain hasPoint method", function() {
+      const line = { endA: { x: 2, y: 3 }, endB: { x: 2, y: 3 } };
+      const point = new Point(0, 0);
+      assert.throws(() => point.isOn(line));
+    });
     it("should validate for circle, where the area 0 and centre is given", function() {
       const circle = new Circle({ x: 0, y: 0 }, 0);
       const point = new Point(0, 0);
-      assert.isOk(point.isOn(circle));
+      assert.isTrue(point.isOn(circle));
+    });
+    it("should validate, when the given point is on the circle", function() {
+      const circle = new Circle({ x: 2, y: 8 }, 6);
+      const point = new Point(2, 2);
+      assert.isTrue(point.isOn(circle));
+    });
+    it("should invalidate when the point is inside the circle", function() {
+      const circle = new Circle({ x: 2, y: 8 }, 6);
+      const point = new Point(2, 3);
+      assert.isFalse(point.isOn(circle));
+    });
+    it("should throw error, when the object doesn't contain hasPoint method", function() {
+      const circle = { point: { x: 3, y: 3 }, radius: 2 };
+      const point = new Point(0, 0);
+      assert.throws(() => point.isOn(circle));
     });
   });
 });
