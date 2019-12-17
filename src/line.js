@@ -28,9 +28,11 @@ class Line {
     this.endA = new Point(endA.x, endA.y);
     this.endB = new Point(endB.x, endB.y);
   }
+
   toString() {
     return `[Line (${this.endA.x},${this.endA.y}) to (${this.endB.x},${this.endB.y})]`;
   }
+
   isEqualTo(other) {
     return (
       (this.endA.isEqualTo(other.endA) && this.endB.isEqualTo(other.endB)) ||
@@ -39,16 +41,11 @@ class Line {
   }
 
   get length() {
-    const x = Math.abs(this.endA.x - this.endB.x);
-    const y = Math.abs(this.endA.y - this.endB.y);
-    return Math.sqrt(x * x + y * y);
-    r;
+    return this.endA.findDistanceTo(this.endB);
   }
 
   get slope() {
-    const dy = this.endB.y - this.endA.y;
-    const dx = this.endB.x - this.endA.x;
-    return dy / dx;
+    return (this.endB.y - this.endA.y) / (this.endB.x - this.endA.x);
   }
 
   isParallelTo(other) {
@@ -70,6 +67,7 @@ class Line {
     const yIntercept = getYIntercept(this.endA.x, this.endA.y, this.slope);
     return this.slope * x + yIntercept;
   }
+
   split() {
     const midPointOfLine = {
       x: (this.endA.x + this.endB.x) / 2,
@@ -80,6 +78,7 @@ class Line {
       new Line(midPointOfLine, this.endB)
     ];
   }
+
   hasPoint(point) {
     if (!(point instanceof Point)) return false;
     return (
@@ -93,6 +92,7 @@ class Line {
     const ratio = dt / this.length;
     return getPoint(ratio, this.endA, this.endB);
   }
+
   findPointFromEnd(dt) {
     const ratio = dt / this.length;
     return getPoint(ratio, this.endB, this.endA);
