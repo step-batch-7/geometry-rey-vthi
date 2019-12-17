@@ -6,7 +6,7 @@ class Circle {
     this.radius = radius;
   }
   toString() {
-    return `[Circle @(${this.point.x}, ${this.point.y}) radius ${this.radius}]`;
+    return `[Circle @(${this.point.x},${this.point.y}) radius ${this.radius}]`;
   }
   isEqualTo(other) {
     if (!other instanceof Circle) return false;
