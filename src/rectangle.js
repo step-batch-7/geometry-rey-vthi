@@ -1,14 +1,20 @@
 const Point = require("./point");
 const Line = require("./line");
 
+const getSides = function(pointB, pointD) {
+  const pointA = new Point(pointD.x, pointB.y);
+  const pointC = new Point(pointB.x, pointD.y);
+  const AB = new Line(pointB, pointA);
+  const BC = new Line(pointB, pointC);
+  const CD = new Line(pointD, pointC);
+  const DA = new Line(pointD, pointA);
+  return [AB, BC, CD, DA];
+};
+
 class Rectangle {
-  #vertexA;
-  #vertexC;
   constructor(vertexB, vertexD) {
     this.vertexB = new Point(vertexB.x, vertexB.y);
     this.vertexD = new Point(vertexD.x, vertexD.y);
-    this.#vertexC = new Point(vertexD.x, vertexB.y);
-    this.#vertexA = new Point(vertexB.x, vertexD.y);
   }
   toString() {
     return `[Rectangle (${this.vertexB.x},${this.vertexB.y}) to (${this.vertexD.x},${this.vertexD.y})]`;
@@ -35,10 +41,7 @@ class Rectangle {
   }
   hasPoint(point) {
     if (!(point instanceof Point)) return false;
-    const AB = new Line(this.#vertexA, this.vertexB);
-    const BC = new Line(this.vertexB, this.#vertexC);
-    const CD = new Line(this.#vertexC, this.vertexD);
-    const DA = new Line(this.#vertexA, this.vertexD);
+    const [AB, BC, CD, DA] = getSides(this.vertexB, this.vertexD);
     return point.isOn(AB) || point.isOn(BC) || point.isOn(CD) || point.isOn(DA);
   }
   covers(point) {
