@@ -78,4 +78,12 @@ describe("Circle", function() {
       assert.isOk(circle.hasPoint(point));
     });
   });
+  describe("moveTo", function() {
+    it("should change the circle's x and y coordinates", function() {
+      const circle = new Circle({ x: 0, y: 0 });
+      const expected = new Circle({ x: 1, y: 1 });
+      const actual = circle.moveTo({ x: 1, y: 1 });
+      assert.isTrue(actual.isEqualTo(expected));
+    });
+  });
 });

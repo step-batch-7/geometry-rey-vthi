@@ -22,5 +22,8 @@ class Circle {
     if (!(point instanceof Point)) return false;
     return this.point.findDistanceTo(point) === this.radius;
   }
+  moveTo(other) {
+    return new Circle({ x: other.x, y: other.y }, this.radius);
+  }
 }
 module.exports = Circle;
