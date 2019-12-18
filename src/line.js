@@ -16,12 +16,12 @@ const arePointsCollinear = function(point1, point2, point3) {
   );
 };
 
-const getPoint = function(ratio, point1, point2) {
-  if (ratio > 1 || ratio < 0) return null;
-  const x = (1 - ratio) * point1.x + ratio * point2.x;
-  const y = (1 - ratio) * point1.y + ratio * point2.y;
-  return new Point(x, y);
-};
+// const getPoint = function(ratio, point1, point2) {
+//   if (ratio > 1 || ratio < 0) return null;
+//   const x = (1 - ratio) * point1.x + ratio * point2.x;
+//   const y = (1 - ratio) * point1.y + ratio * point2.y;
+//   return new Point(x, y);
+// };
 
 class Line {
   constructor(endA, endB) {
@@ -50,7 +50,7 @@ class Line {
   }
 
   isParallelTo(other) {
-    if (this === other || !other instanceof Line) return false;
+    if (this === other || !(other instanceof Line)) return false;
     if (arePointsCollinear(this.endA, this.endB, other.endA)) return false;
     return this.slope === other.slope;
   }
@@ -89,14 +89,16 @@ class Line {
   }
 
   findPointFromStart(dt) {
-    if (dt === NaN || typeof dt != "number") return null;
+    if (typeof dt != "number") return null;
     const ratio = dt / this.length;
-    return getPoint(ratio, this.endA, this.endB);
+    if (ratio > 1 || ratio < 0) return null;
+    const x = (1 - ratio) * this.endA.x + ratio * this.endB.x;
+    const y = (1 - ratio) * this.endA.y + ratio * this.endB.y;
+    return new Point(x, y);
   }
 
   findPointFromEnd(dt) {
-    const ratio = dt / this.length;
-    return getPoint(ratio, this.endB, this.endA);
+    return this.findPointFromStart(this.length - dt);
   }
 }
 
