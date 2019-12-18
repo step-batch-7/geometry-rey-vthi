@@ -63,7 +63,7 @@ class Line {
 
   findY(x) {
     if (!isPointIsInLine([this.endA.x, this.endB.x], x)) return NaN;
-    if (this.slope === Infinity || this.slope === -Infinity) return this.endA.y;
+    if (this.slope === Infinity) return this.endA.y;
     const yIntercept = getYIntercept(this.endA.x, this.endA.y, this.slope);
     return this.slope * x + yIntercept;
   }

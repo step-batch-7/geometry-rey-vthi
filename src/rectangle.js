@@ -39,9 +39,10 @@ class Rectangle {
   isEqualTo(other) {
     if (!(other instanceof Rectangle)) return false;
     return (
-      (this.vertexB.x === other.vertexB.x &&
-        this.vertexD.y === other.vertexD.y) ||
-      (this.vertexB.x === other.vertexD.x && this.vertexD.y === other.vertexB.y)
+      (this.vertexB.isEqualTo(other.vertexB) &&
+        this.vertexD.isEqualTo(other.vertexD)) ||
+      (this.vertexB.isEqualTo(other.vertexD) &&
+        this.vertexD.isEqualTo(other.vertexB))
     );
   }
 

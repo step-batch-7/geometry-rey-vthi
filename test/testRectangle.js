@@ -54,6 +54,11 @@ describe("Rectangle ", function() {
       const rectangle2 = new Rectangle({ x: 1, y: 1 }, { x: 1, y: 5 });
       assert.isTrue(rectangle1.isEqualTo(rectangle2));
     });
+    it("should invalidate when the two instances not equal", () => {
+      const rectangle1 = new Rectangle({ x: 10, y: 11 }, { x: 12, y: 13 });
+      const rectangle2 = new Rectangle({ x: 10, y: 12 }, { x: 12, y: 13 });
+      assert.isFalse(rectangle1.isEqualTo(rectangle2));
+    });
 
     it("should invalidate when given object is not a instance of Rectangle", function() {
       const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 2, y: 3 });
