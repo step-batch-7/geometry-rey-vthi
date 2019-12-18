@@ -9,7 +9,7 @@ class Circle {
     return `[Circle @(${this.point.x},${this.point.y}) radius ${this.radius}]`;
   }
   isEqualTo(other) {
-    if (!other instanceof Circle) return false;
+    if (!(other instanceof Circle)) return false;
     return this.point.isEqualTo(other.point) && this.radius === other.radius;
   }
   get area() {

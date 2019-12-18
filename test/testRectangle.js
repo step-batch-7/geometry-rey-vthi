@@ -54,12 +54,16 @@ describe("Rectangle ", function() {
       const rectangle2 = new Rectangle({ x: 1, y: 1 }, { x: 1, y: 5 });
       assert.isTrue(rectangle1.isEqualTo(rectangle2));
     });
+    it("should return true, when the both the corresponding opposite points are equal", function() {
+      const rectangle1 = new Rectangle({ x: 1, y: 1 }, { x: 1, y: 5 });
+      const rectangle2 = new Rectangle({ x: 1, y: 5 }, { x: 1, y: 1 });
+      assert.isTrue(rectangle1.isEqualTo(rectangle2));
+    });
     it("should invalidate when the two instances not equal", () => {
       const rectangle1 = new Rectangle({ x: 10, y: 11 }, { x: 12, y: 13 });
       const rectangle2 = new Rectangle({ x: 10, y: 12 }, { x: 12, y: 13 });
       assert.isFalse(rectangle1.isEqualTo(rectangle2));
     });
-
     it("should invalidate when given object is not a instance of Rectangle", function() {
       const rectangle = new Rectangle({ x: 1, y: 1 }, { x: 2, y: 3 });
       const other = { vertexB: { x: 1, y: 1 }, vertexD: { x: 2, y: 3 } };
@@ -100,7 +104,11 @@ describe("Rectangle ", function() {
       const point = new Point(3, 3);
       assert.isTrue(rectangle.covers(point));
     });
-
+    it("should invalidate when the given point is outside the rectangle", function() {
+      const rectangle = new Rectangle({ x: 6, y: 6 }, { x: 1, y: 1 });
+      const point = { x: 4, y: 5 };
+      assert.isFalse(rectangle.covers(point));
+    });
     it("should invalidate when the given point is outside the rectangle", function() {
       const rectangle = new Rectangle({ x: 6, y: 6 }, { x: 1, y: 1 });
       const point = new Point(3, 0);

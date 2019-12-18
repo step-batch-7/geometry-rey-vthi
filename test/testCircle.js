@@ -38,7 +38,7 @@ describe("Circle", function() {
     it("should not validate if Circle object is not given", function() {
       const circle1 = new Circle({ x: 5, y: 2 }, 5);
       const circle2 = { point: { x: 3, y: 4 }, radius: 5 };
-      assert.isNotOk(circle1.isEqualTo(circle2));
+      assert.isFalse(circle1.isEqualTo(circle2));
     });
   });
   describe("area", function() {
@@ -75,7 +75,11 @@ describe("Circle", function() {
     it("should validate the circle,when the area is zero and centre is given", function() {
       const circle = new Circle({ x: 0, y: 0 }, 0);
       const point = new Point(0, 0);
-      assert.isOk(circle.hasPoint(point));
+      assert.isTrue(circle.hasPoint(point));
+    });
+    it("should invalidate when the given point is not instance of the Point", function() {
+      const circle = new Circle({ x: 0, y: 0 }, 0);
+      assert.isFalse(circle.hasPoint({ x: 2, y: 3 }));
     });
   });
   describe("moveTo", function() {

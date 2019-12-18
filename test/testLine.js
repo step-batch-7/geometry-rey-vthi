@@ -89,6 +89,11 @@ describe("Line", function() {
       const other = new Line({ x: 2, y: 2 }, { x: 6, y: 6 });
       assert.isFalse(line.isParallelTo(other));
     });
+    it("should invalidate, whether the given object is not the instance of line", function() {
+      const line = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
+      const other = { endA: { x: 2, y: 2 }, endB: { x: 6, y: 6 } };
+      assert.isFalse(line.isParallelTo(other));
+    });
 
     it("should return false when both the lines are overlapping", function() {
       const line = new Line({ x: 2, y: 2 }, { x: 4, y: 4 });
@@ -128,6 +133,10 @@ describe("Line", function() {
       const line = new Line({ x: 2, y: 2 }, { x: 2, y: 2 });
       assert.isNaN(line.slope);
     });
+    it("should give the infinity when the line is parallel to y axis", () => {
+      const line = new Line({ x: 4, y: -4 }, { x: 4, y: 4 });
+      assert.strictEqual(line.slope, Infinity);
+    });
   });
 
   describe("findX", function() {
@@ -140,6 +149,14 @@ describe("Line", function() {
       const line = new Line({ x: 1, y: 1 }, { x: 3, y: 3 });
       const actual = line.findX(4);
       assert.isNaN(actual);
+    });
+    it("should give NaN when the point is outside of the line segment", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: 4, y: 4 });
+      assert.isNaN(line.findX(5));
+    });
+    it("should give any valid x value when there are multiple x for the given y", function() {
+      const line = new Line({ x: 0, y: 0 }, { x: 1, y: 0 });
+      assert.strictEqual(line.findX(0), 0);
     });
   });
 
@@ -209,17 +226,32 @@ describe("Line", function() {
       const line = new Line({ x: 0, y: 0 }, { x: 4, y: 0 });
       assert.isNull(line.findPointFromStart(5));
     });
-  });
-  describe("findPointFromEnd", function() {
-    it("should give the point, from the end of the line", function() {
-      const line = new Line({ x: 5, y: 0 }, { x: 0, y: 0 });
-      const expectedPoint = new Point(3, 0);
-      const actualPoint = line.findPointFromStart(2);
-      assert.ok(actualPoint.isEqualTo(expectedPoint));
+    it("should give null when the distance is not a number", () => {
+      const line = new Line({ x: 0, y: 0 }, { x: -6, y: -8 });
+      const point = new Point(-3, -4);
+      const pointInDistance = line.findPointFromStart(`number`);
+      assert.isNull(pointInDistance);
     });
-    it("should invalidate when the given distance is more than the length of the line", function() {
-      const line = new Line({ x: 0, y: 0 }, { x: 4, y: 0 });
-      assert.isNull(line.findPointFromStart(5));
+  });
+
+  describe("findPointFromEnd", () => {
+    it("should give a point on the line in given distance from the end of the line", () => {
+      const line = new Line({ x: 5, y: 0 }, { x: 0, y: 0 });
+      const point = new Point(2, 0);
+      const pointInDistance = line.findPointFromEnd(2);
+      assert.isTrue(point.isEqualTo(pointInDistance));
+    });
+    it("should give start Point when given distance is equal to length", function() {
+      const line = new Line({ x: 0, y: 1 }, { x: 0, y: 9 });
+      const actualValue = line.findPointFromEnd(8);
+      const point = new Point(0, 1);
+      assert.isTrue(point.isEqualTo(actualValue));
+    });
+    it("should give a point on the line ,when any of the coordinate is negative", () => {
+      const line = new Line({ x: -6, y: -8 }, { x: 0, y: 0 });
+      const point = new Point(-3, -4);
+      const pointInDistance = line.findPointFromEnd(5);
+      assert.isTrue(point.isEqualTo(pointInDistance));
     });
   });
 });

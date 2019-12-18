@@ -60,6 +60,11 @@ describe("Point", function() {
       const actual = p1.findDistanceTo(p2);
       assert.approximately(actual, 9.89, 0.5);
     });
+    it("should give NaN when the given point is not an instance of Point", function() {
+      const point1 = new Point(1, 2);
+      const point2 = { x: 3, y: 3 };
+      assert.isNaN(point1.findDistanceTo(point2));
+    });
   });
 
   describe("isOn", function() {

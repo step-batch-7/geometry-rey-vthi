@@ -16,13 +16,6 @@ const arePointsCollinear = function(point1, point2, point3) {
   );
 };
 
-// const getPoint = function(ratio, point1, point2) {
-//   if (ratio > 1 || ratio < 0) return null;
-//   const x = (1 - ratio) * point1.x + ratio * point2.x;
-//   const y = (1 - ratio) * point1.y + ratio * point2.y;
-//   return new Point(x, y);
-// };
-
 class Line {
   constructor(endA, endB) {
     this.endA = new Point(endA.x, endA.y);
@@ -45,8 +38,7 @@ class Line {
   }
 
   get slope() {
-    const slope = (this.endB.y - this.endA.y) / (this.endB.x - this.endA.x);
-    return slope == -Infinity ? Infinity : slope;
+    return (this.endB.y - this.endA.y) / (this.endB.x - this.endA.x);
   }
 
   isParallelTo(other) {
