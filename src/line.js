@@ -57,7 +57,7 @@ class Line {
 
   findX(y) {
     if (!isPointIsInLine([this.endA.y, this.endB.y], y)) return NaN;
-    if (this.slope === 0) return this.endA.y;
+    if (this.slope === 0) return this.endA.x;
     return (y - this.endA.y) / this.slope + this.endA.x;
   }
 
