@@ -58,8 +58,7 @@ class Line {
   findX(y) {
     if (!isPointIsInLine([this.endA.y, this.endB.y], y)) return NaN;
     if (this.slope === 0) return this.endA.y;
-    const yIntercept = getYIntercept(this.endA.x, this.endA.y, this.slope);
-    return (y - yIntercept) / this.slope;
+    return (y - this.endA.y) / this.slope + this.endA.x;
   }
 
   findY(x) {
@@ -90,6 +89,7 @@ class Line {
   }
 
   findPointFromStart(dt) {
+    if (dt === NaN || typeof dt != "number") return null;
     const ratio = dt / this.length;
     return getPoint(ratio, this.endA, this.endB);
   }
