@@ -11,6 +11,12 @@ const getSides = function(pointB, pointD) {
   return [AB, BC, CD, DA];
 };
 
+const getLengthAndWidth = function(vertexB, vertexD) {
+  const length = vertexB.x - vertexD.x;
+  const width = vertexB.y - vertexD.y;
+  return [Math.abs(length), Math.abs(width)];
+};
+
 class Rectangle {
   constructor(vertexB, vertexD) {
     this.vertexB = new Point(vertexB.x, vertexB.y);
@@ -21,16 +27,15 @@ class Rectangle {
   }
 
   get area() {
-    const length = this.vertexB.x - this.vertexD.x;
-    const width = this.vertexB.y - this.vertexD.y;
-    return Math.abs(length * width);
+    const [length, width] = getLengthAndWidth(this.vertexB, this.vertexD);
+    return length * width;
   }
 
   get perimeter() {
-    const length = this.vertexB.x - this.vertexD.x;
-    const width = this.vertexB.y - this.vertexD.y;
-    return 2 * Math.abs(length + width);
+    const [length, width] = getLengthAndWidth(this.vertexB, this.vertexD);
+    return 2 * (length + width);
   }
+
   isEqualTo(other) {
     if (!(other instanceof Rectangle)) return false;
     return (
@@ -39,11 +44,13 @@ class Rectangle {
       (this.vertexB.x === other.vertexD.x && this.vertexD.y === other.vertexB.y)
     );
   }
+
   hasPoint(point) {
     if (!(point instanceof Point)) return false;
     const [AB, BC, CD, DA] = getSides(this.vertexB, this.vertexD);
     return point.isOn(AB) || point.isOn(BC) || point.isOn(CD) || point.isOn(DA);
   }
+
   covers(point) {
     if (!(point instanceof Point)) return false;
     const [x1, x2] = [this.vertexB.x, this.vertexD.x].sort();
